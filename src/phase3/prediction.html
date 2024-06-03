@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+  <style>
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  tr:nth-child(even) {
+    background-color: #dddddd;
+  }
+body{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px 0px 20px 0px;
+            background-color: #f4f4f4;
+	    background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: inline-block;
+  position: relative;
+  width: 100%;
+            /* background-image:url('/static/prediction_car.jpeg'); */
+}
+
+img {
+  pointer-events: none;
+  width: 50%;
+  height: 150%;
+  z-index: -1;
+}
+#content-price{
+  margin-top: 346px !important;
+}
+
+p {
+  padding: 25px;
+}
+header {
+  margin-top: -31px;
+    margin-left: 305 px;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      height: 57px;
+    }
+  #main-text{
+    font-style : italic;
+    color: crimson;
+  }
+  </style>
+	<title>Sales Prediction Service</title>
+</head>
+
+<body>
+  <header>
+  <h5 style="padding: 7px;text-align: left;">Used Automobiles price prediction</h5>
+</header>
+<div>
+  <img width = "1115px" height = "450px" 
+      style="margin-bottom: 10px; margin-top: 10px; margin-left: 262px; margin-right: 15px;border-radius: 20px;" src =
+   "/static/prediction_car.jpg">
+   </div> <br/>
+	<div class="container">
+        <table>
+            <tr>
+                <th>Vehicle Type</th>
+                <th>Model</th>
+                <th>Gearbox</th>
+                <th>Power PS</th>
+                <th>Kilometer</th>
+                <th>Abtest</th>
+                <th>Any Repaired Damage</th>
+            </tr>
+            <tr>
+                <td>{{session['vehicleType_id']}}</td>
+                <td>{{session['model_id']}}</td>
+                <td>{{session['gearbox_id']}}</td>
+                <td>{{session['powerPS']}}</td>
+                <td>{{session['kilometer']}}</td>
+                <td>{{session['abtest_id']}}</td>
+                <td>{{session['notRepairedDamage_id']}}</td>
+            </tr>
+        </table>
+
+		<h5 id="main-text">The Predicted price is {{prediction}} </h5>
+	</div>
+  <div style="margin-left: 90px; margin-right: 81px;">
+    <h5 style="padding: 10px;"> Below are the dynamics and trends of the Car features and price </h5>
+    <table>
+      <tr>
+        <td>
+      <img style="width: 100%;height: 200px;" 
+      src =
+   "/static/graph-1.jpeg"/> </td>
+   <td>
+     <img style="width: 100%;height: 200px" 
+       src =
+   "/static/graph-2.jpeg"/> </td>
+   </tr>
+   <tr> <td>
+     <img style="width: 100%;height: 250px" 
+       src =
+   "/static/graph-3.jpeg"/>
+   </td>
+    <td>
+     <img style="width: 100%;height: 250px;" 
+      src =
+   "/static/graph-4.jpeg"/>
+    </td> <tr>
+    </table>
+  </div>
+</body>
+
+</html>

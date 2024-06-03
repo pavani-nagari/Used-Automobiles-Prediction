@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Prediction Form</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	    background-image: url('/static/car_home_page.jpg');
+            margin: 20px 0px 20px 0px;
+            background-color: #f4f4f4;
+	    background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        select {
+            appearance: none;
+            background: url('https://img.icons8.com/material-outlined/24/000000/down-arrow.png') no-repeat right #fff;
+            background-size: 24px;
+            padding-right: 30px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+        header {
+          margin-top: -31px;
+          margin-left: 305 px;
+          background-color: #333;
+          color: #fff;
+          padding: 10px;
+          text-align: center;
+          height: 45px;
+    }
+    </style>
+</head>
+<script>
+    function validateForm() {
+            var powerPS = document.getElementById("powerPS").value;
+            if (powerPS < 0) {
+                alert("Power PS must be a positive number");
+                return false;
+            }
+            var kilometer = document.getElementById("kilometer").value;
+            if (kilometer < 0) {
+                alert("Kilometer must be a positive number");
+                return false;
+            }
+            return true;
+        }
+
+  function submitForm() {
+
+  const vehicleType_ele = document.getElementById('vehicleType');
+  const vehicleType_name = document.getElementById('vehicleType_name');
+
+  const model_name_ele = document.getElementById('model');
+  const model_name = document.getElementById('model_name');
+
+  const gearbox_ele = document.getElementById('gearbox');
+  const gearbox_name = document.getElementById('gearbox_name');
+
+  const abtest_ele = document.getElementById('abtest');
+  const abtest_name = document.getElementById('abtest_name');
+
+  const notRepairedDamage_ele = document.getElementById('notRepairedDamage');
+  const notRepairedDamage_name = document.getElementById('notRepairedDamage_name');
+
+  const vt_selectedValue = vehicleType_ele.options[vehicleType_ele.selectedIndex].dataset.name;
+  vehicleType_name.value = vt_selectedValue;
+
+  const mn_selectedValue = model_name_ele.options[model_name_ele.selectedIndex].dataset.name;
+  model_name.value = mn_selectedValue;
+
+  const gb_selectedValue = gearbox_ele.options[gearbox_ele.selectedIndex].dataset.name;
+  gearbox_name.value = gb_selectedValue;
+
+  const ab_selectedValue = abtest_ele.options[abtest_ele.selectedIndex].dataset.name;
+  abtest_name.value = ab_selectedValue;
+
+  const nd_selectedValue = notRepairedDamage_ele.options[notRepairedDamage_ele.selectedIndex].dataset.name;
+  notRepairedDamage_name.value = nd_selectedValue;
+}
+</script>
+<body>
+  <header>
+  <h4 style="text-align: left;">Used Automobiles price prediction</h4>
+</header>
+    <table style="margin-left: 120px;"> 
+    <tr>
+      <td>
+    <!-- <h2 style="color='#cc2c2c';">Automobiles Price Prediction</h2> -->
+    <h2 style="text-align: center;color: #ad9ab6">Predict your old automobiles price according to the features </h2>
+    <h3 style="text-align: center;color: aliceblue">Enter the details</h3>
+    <form action="/predict" method="post" onsubmit="return validateForm();">
+
+	<!-- Vehicle Type -->
+        <label for="vehicleType"><b>Vehicle Type</b></label>
+           <select id="vehicleType" name="vehicleType" required>
+            <option value="0" data-name="SUV">SUV</option>
+            <option value="1" data-name="Limousine">Limousine</option>
+            <option value="2" data-name="Kombi">Kombi</option>
+            <option value="3" data-name="Bus">Bus</option>
+            <option value="4" data-name="Kleinwager">Kleinwager</option>
+            <option value="5" data-name="Cabrio">Cabrio</option>
+            <option value="6" data-name="Coupe">Coupe</option>
+        </select>
+    <input type="hidden" name="vehicleType_name" id="vehicleType_name">
+
+	<!-- Model -->
+        <label for="model"><b>Model</b></label>
+        <select id="model" name="model" required>
+            <option value="12" data-name="Golf">Golf</option>
+            <option value="33" data-name="Cooper">Cooper</option>
+            <option value="20" data-name="Megane">Megane</option>
+            <option value="6" data-name="Escort">Escort</option>
+            <option value="7" data-name="Forester">Forester</option>
+            <option value="6" data-name="Andere">Andere</option>
+            <option value="8" data-name="Scenic">Scenic</option>
+	          <option value="11" data-name="Twingo">Twingo</option>
+            <option value="14" data-name="C_max">C_max</option>
+            <option value="25" data-name="Zafira">Zafira</option>
+            <option value="27" data-name="Focus">Focus</option>
+            <option value="28" data-name="Omega">Omega</option>
+            <option value="32" data-name="Lupo">Lupo</option>
+            <option value="35" data-name="Sportage">Sportage</option>
+	          <option value="1" data-name="One">One</option>
+            <option value="5" data-name="Fiesta">Fiesta</option>
+            <option value="57" data-name="Yaris">Yaris</option>
+            <option value="31" data-name="Santa">Santa</option>
+            <option value="2" data-name="Astra">Astra</option>
+        </select>
+    <input type="hidden" name="model_name" id="model_name">
+
+	<!-- Gearbox -->
+        <label for="gearbox"><b>Gearbox</b></label>
+           <select id="gearbox" name="gearbox" required>
+            <option value="0" data-name="Manual">Manual</option>
+            <option value="1" data-name="Automatic">Automatic</option>
+        </select>
+    <input type="hidden" name="gearbox_name" id="gearbox_name">
+
+        <!-- Power PS -->
+        <label for="powerPS"><b>Power PS</b></label>
+        <input type="number" id="powerPS" name="powerPS" required min="0">
+
+        <!-- Kilometer -->
+        <label for="kilometer"><b>Kilometers Run</b></label>
+        <input type="number" id="kilometer" name="kilometer" required min="0">
+
+
+        <!-- Abtest -->
+        <label for="abtest"><b>Abtest</b></label>
+        <select id="abtest" name="abtest" required>
+            <option value="0" data-name="Test">Test</option>
+            <option value="1" data-name="Control">Control</option>
+        </select>
+    <input type="hidden" name="abtest_name" id="abtest_name">
+
+
+        <!-- Not Repaired Damage -->
+        <label for="notRepairedDamage"><b>Any Repaired Damage</b></label>
+        <select id="notRepairedDamage" name="notRepairedDamage" required>
+             <option value="1" data-name="Yes">Yes</option>
+            <option value="2" data-name="No">No</option>
+        </select>
+    <input type="hidden" name="notRepairedDamage_name" id="notRepairedDamage_name">
+
+        <!-- Submit Button -->
+        <button type="submit" onclick="submitForm()">Predict Price</button>
+    </form>
+    </td>
+    </tr>
+  </table>
+</body>
+</html>
